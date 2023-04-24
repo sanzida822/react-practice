@@ -1,15 +1,19 @@
 
 import './App.css'
-import Header from './Header/Header'
+import Header from './Components/Header/Header'
+import Shop from './Components/Shop/Shop'
 
 function App() {
 
 
   return (
-  <Header className="">
-    
+    <div className="App">
+        <Header>
   </Header>
+  <Shop></Shop>
      
+    </div>
+
   )
 }
 
