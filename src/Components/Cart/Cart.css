@@ -2,3 +2,16 @@
    position: sticky;
    top: 0;
 }
+.clear-cart{
+   width: 190px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   background-color:#FF3030;
+   color: white;
+   border: none;
+   margin: 2px 0px;
+}
+.trash-icon{
+   color: white;
+}

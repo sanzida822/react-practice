@@ -9,3 +9,8 @@
     background-color:  #FF99004D;
     ;
 }
+.btn-proceed{
+    width: 190px;
+    background-color: yellow;
+    margin: 10px 0px;
+}
