@@ -14,6 +14,8 @@ import Inventory from './Components/Inventory/Inventory.jsx';
 import Login from './Components/Login/Login.jsx';
 import CartProductLoader from './Loader/CartProductLoader.js';
 import Checkout from './Components/Checkout/Checkout.jsx';
+import Signup from './Components/Signup/Signup.jsx';
+import AuthProviders from './Components/Providers/AuthProviders.jsx';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +27,7 @@ const router = createBrowserRouter([
         element:<Shop></Shop>
       },
       {
-        path:"orders/",
+        path:"orders",
         element:<Orders></Orders>,
         loader:CartProductLoader
       },
@@ -38,7 +40,11 @@ const router = createBrowserRouter([
         element:<Inventory></Inventory>
       },
       {
-        path:"login/",
+        path:"signup",
+        element:<Signup></Signup>
+      },
+      {
+        path:"login",
         element:<Login></Login>
       }
 
@@ -48,6 +54,6 @@ const router = createBrowserRouter([
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+<AuthProviders>    <RouterProvider router={router} /></AuthProviders>
   </React.StrictMode>
 )

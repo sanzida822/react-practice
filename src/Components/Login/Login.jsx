@@ -1,11 +1,65 @@
-import React from 'react';
+import React, { useContext, useState } from "react";
+import "./login.css";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../Providers/AuthProviders";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-    return (
-        <div>
-            <h2>Login page</h2>
-        </div>
-    );
+  const [error, setError] = useState("");
+  const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handlesignIn = (event) => {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    signIn(email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        event.target.reset();
+
+        
+        navigate("/orders");
+        
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setError(errorMessage);
+      });
+  };
+  return (
+    <div>
+      <h2>Login page</h2>
+
+      <div className="form-container">
+        <form onSubmit={handlesignIn}>
+          <div className="form-control">
+            <label htmlFor="">Email</label>
+            <br />
+            <input type="email" name="email" id="" />
+          </div>
+
+          <div className="form-control">
+            <label htmlFor="">password</label>
+            <br />
+            <input type="password" name="password" id="" />
+          </div>
+
+          <div className="btn-submit">
+            <button>submit</button>
+          </div>
+        </form>
+        <p>
+          <small>
+            new to ema-john? <Link to="/signup">sign up</Link>
+          </small>
+        </p>
+      </div>
+    </div>
+  );
 };
 
 export default Login;
