@@ -25,6 +25,7 @@ const Header = () => {
         <Link to="/">shop</Link>
         <Link to="/orders">order</Link>
         <Link to="/inventory">inventory</Link>
+      
         <Link to="signup">sign up</Link>
         <Link to="/login">login</Link>
         <button onClick={handleLogout}>logout</button>

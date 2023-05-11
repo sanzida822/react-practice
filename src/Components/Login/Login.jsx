@@ -1,13 +1,25 @@
 import React, { useContext, useState } from "react";
 import "./login.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProviders";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [error, setError] = useState("");
   const { signIn } = useContext(AuthContext);
+
+  const [show,setShow]=useState(false)
   const navigate = useNavigate();
+
+  const location=useLocation();
+
+
+  //private route a state save hoice kina
+  const from=location.state?.from?.pathname||"/";
+
+  console.log(location)
+
+
   const handlesignIn = (event) => {
     event.preventDefault();
     const email = event.target.email.value;
@@ -19,8 +31,9 @@ const Login = () => {
         console.log(user);
         event.target.reset();
 
-        
-        navigate("/orders");
+   
+   
+         navigate(from, { replace: true });
         
         // ...
       })
@@ -45,7 +58,12 @@ const Login = () => {
           <div className="form-control">
             <label htmlFor="">password</label>
             <br />
-            <input type="password" name="password" id="" />
+            <input type={show?"text":"password"} name="password" id="" />
+            <p onClick={()=>setShow(!show)}>
+              {
+                show?<span>hide pasword</span>:<span>show password</span>
+              }
+              </p>
           </div>
 
           <div className="btn-submit">
